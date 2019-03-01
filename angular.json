@@ -134,6 +134,133 @@
           }
         }
       }
+    },
+    "Reactive": {
+      "root": "projects/Reactive/",
+      "sourceRoot": "projects/Reactive/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/Reactive",
+            "index": "projects/Reactive/src/index.html",
+            "main": "projects/Reactive/src/main.ts",
+            "polyfills": "projects/Reactive/src/polyfills.ts",
+            "tsConfig": "projects/Reactive/tsconfig.app.json",
+            "assets": [
+              "projects/Reactive/src/favicon.ico",
+              "projects/Reactive/src/assets"
+            ],
+            "styles": [
+              "projects/Reactive/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/Reactive/src/environments/environment.ts",
+                  "with": "projects/Reactive/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "Reactive:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Reactive:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Reactive:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/Reactive/src/test.ts",
+            "polyfills": "projects/Reactive/src/polyfills.ts",
+            "tsConfig": "projects/Reactive/tsconfig.spec.json",
+            "karmaConfig": "projects/Reactive/karma.conf.js",
+            "styles": [
+              "projects/Reactive/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/Reactive/src/favicon.ico",
+              "projects/Reactive/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/Reactive/tsconfig.app.json",
+              "projects/Reactive/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "Reactive-e2e": {
+      "root": "projects/Reactive-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/Reactive-e2e/protractor.conf.js",
+            "devServerTarget": "Reactive:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Reactive:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/Reactive-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-login",
